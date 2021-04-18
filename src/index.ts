@@ -1,37 +1,32 @@
 import blessed from "blessed";
+import Cell from "./models/Cell";
+
+const cellSize = 40;
+const cols = Math.floor(400 / 40);
+const rows = Math.floor(400 / 40);
+const grid: Cell[] = [];
 
 const screen = blessed.screen({
   smartCSR: true,
+  title: "mms",
 });
-
-screen.title = "My Screen";
-
-const box = blessed.box({
-  top: "center",
-  left: "center",
-  width: "50%",
-  height: "50%",
-  content: "Hello from box",
-  tags: true,
-  border: {
-    type: "line",
-  },
-  style: {
-    fg: "white",
-    bg: "red",
-    border: {
-      fg: "#f0f0f0",
-    },
-    hover: {
-      bg: "green",
-    },
-  },
-});
-
-screen.append(box);
 
 screen.key(["escape", "q", "C-c"], function (ch, key) {
   return process.exit(0);
 });
 
-screen.render();
+const setup = () => {
+  for (let j = 0; j < rows; j++) {
+    for (let i = 0; i < cols; i++) {
+      const cell = new Cell(i, j);
+      grid.push(cell);
+    }
+  }
+};
+
+const render = () => {
+  for (let i = 0; i < grid.length; i++) {
+    // grid[i].
+  }
+  screen.render();
+};

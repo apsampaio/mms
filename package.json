@@ -5,7 +5,7 @@
   "author": "apsampaio <andre03.sampaio@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel src/index.html --open"
+    "start": "parcel src/index.html --open"
   },
   "devDependencies": {
     "@types/p5": "^0.9.1",

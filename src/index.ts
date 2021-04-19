@@ -2,13 +2,14 @@ import Cell from "./models/Cell";
 import p5 from "p5";
 
 export const cellSize = 40;
-const cols = Math.floor(400 / 40);
-const rows = Math.floor(400 / 40);
+export const canvasSize = 400;
+const cols = Math.floor(canvasSize / 40);
+const rows = Math.floor(canvasSize / 40);
 const grid: Cell[] = [];
 
 const sketch = (s: p5) => {
   s.setup = () => {
-    s.createCanvas(400, 400);
+    s.createCanvas(canvasSize, canvasSize);
     for (let j = 0; j < rows; j++) {
       for (let i = 0; i < cols; i++) {
         const cell = new Cell(i, j);

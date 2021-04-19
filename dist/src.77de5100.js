@@ -28855,20 +28855,21 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.cellSize = void 0;
+exports.canvasSize = exports.cellSize = void 0;
 
 var Cell_1 = __importDefault(require("./models/Cell"));
 
 var p5_1 = __importDefault(require("p5"));
 
 exports.cellSize = 40;
-var cols = Math.floor(400 / 40);
-var rows = Math.floor(400 / 40);
+exports.canvasSize = 400;
+var cols = Math.floor(exports.canvasSize / 40);
+var rows = Math.floor(exports.canvasSize / 40);
 var grid = [];
 
 var sketch = function sketch(s) {
   s.setup = function () {
-    s.createCanvas(400, 400);
+    s.createCanvas(exports.canvasSize, exports.canvasSize);
 
     for (var j = 0; j < rows; j++) {
       for (var i = 0; i < cols; i++) {
@@ -28916,7 +28917,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52214" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52588" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

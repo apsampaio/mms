@@ -1,3 +1,6 @@
+import p5 from "p5";
+import { cellSize } from "../index";
+
 export default class Cell {
   i: number;
   j: number;
@@ -7,7 +10,12 @@ export default class Cell {
     this.j = j;
   }
 
-  //   this.show = () => {
+  public show = (s: p5) => {
+    const x = this.i * cellSize;
+    const y = this.j * cellSize;
 
-  //   }
+    s.stroke(255);
+    s.noFill();
+    s.rect(x, y, cellSize, cellSize);
+  };
 }

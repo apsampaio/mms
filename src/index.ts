@@ -1,15 +1,18 @@
 import p5 from "p5";
 import Cell from "./models/Cell";
-import removeWalls from "./utils/removeWalls";
+import Player from "./models/Player";
+import drawMaze, { mazeFinished } from "./utils/drawMaze";
 
-export const cellSize = 10;
+export const cellSize = 40;
 export const canvasSize = 400;
+
 export const cols = Math.floor(canvasSize / cellSize);
 export const rows = Math.floor(canvasSize / cellSize);
-export const grid: Cell[] = [];
-const stack: Cell[] = [];
 
-let currentCell: Cell;
+export const grid: Cell[] = [];
+
+let player: Player;
+let moveCounter = 0;
 
 const sketch = (s: p5) => {
   s.setup = () => {
@@ -20,31 +23,43 @@ const sketch = (s: p5) => {
         grid.push(cell);
       }
     }
-    //s.frameRate(5);
-    currentCell = grid[0];
+
+    player = new Player(0, 0);
   };
 
   s.draw = () => {
-    s.background(51);
-    for (let i = 0; i < grid.length; i++) {
-      grid[i].show(s);
+    drawMaze(s);
+    if (mazeFinished) {
+      player.show(s);
     }
+  };
 
-    currentCell.visited = true;
-    currentCell.highlight(s);
-
-    const next = currentCell.checkNeighbors();
-
-    if (next) {
-      next.visited = true;
-      stack.push(currentCell);
-      removeWalls(currentCell, next);
-      currentCell = next;
-    } else if (stack.length) {
-      currentCell = stack.pop()!;
+  s.keyPressed = () => {
+    console.log(s.key);
+    switch (s.key) {
+      case "a": {
+        moveCounter++;
+        player.i -= 1;
+        break;
+      }
+      case "s": {
+        moveCounter++;
+        player.j += 1;
+        break;
+      }
+      case "d": {
+        moveCounter++;
+        player.i += 1;
+        break;
+      }
+      case "w": {
+        moveCounter++;
+        player.j -= 1;
+        break;
+      }
     }
   };
 };
 
 // P5 Definition
-const sketchInstance = new p5(sketch);
+new p5(sketch);

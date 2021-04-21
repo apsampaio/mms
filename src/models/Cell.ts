@@ -27,6 +27,7 @@ export default class Cell {
     const x = this.i * w;
     const y = this.j * w;
 
+    s.strokeWeight(2);
     s.stroke(255);
     this.walls[0] && s.line(x, y, x + w, y); // TOP
     this.walls[1] && s.line(x + w, y, x + w, y + w); // RIGHT
@@ -40,8 +41,13 @@ export default class Cell {
 
     if (this.visited) {
       s.noStroke();
-      this.end ? s.fill(0, 255, 0) : s.fill(255, 0, 255, 100);
+      s.fill(255, 0, 255, 100);
       s.rect(x, y, cellSize, cellSize);
+      if (this.end) {
+        // DRAW GREEN RECT
+        s.fill(0, 255, 0);
+        s.rect(x + 2, y + 2, cellSize - 4, cellSize - 4);
+      }
     }
   };
 

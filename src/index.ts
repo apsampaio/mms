@@ -2,6 +2,7 @@ import p5 from "p5";
 import Cell from "./models/Cell";
 import Player from "./models/Player";
 import drawMaze, { mazeFinished } from "./utils/drawMaze";
+import moveCounter from "./utils/moveCounter";
 
 export const cellSize = 40;
 export const canvasSize = 400;
@@ -12,7 +13,7 @@ export const rows = Math.floor(canvasSize / cellSize);
 export const grid: Cell[] = [];
 
 let player: Player;
-let moveCounter = 0;
+let counter = 0;
 
 const sketch = (s: p5) => {
   s.setup = () => {
@@ -38,22 +39,22 @@ const sketch = (s: p5) => {
     console.log(s.key);
     switch (s.key) {
       case "a": {
-        moveCounter++;
+        moveCounter(++counter);
         player.i -= 1;
         break;
       }
       case "s": {
-        moveCounter++;
+        moveCounter(++counter);
         player.j += 1;
         break;
       }
       case "d": {
-        moveCounter++;
+        moveCounter(++counter);
         player.i += 1;
         break;
       }
       case "w": {
-        moveCounter++;
+        moveCounter(++counter);
         player.j -= 1;
         break;
       }

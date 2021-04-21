@@ -4,21 +4,21 @@ const removeWalls = (current: Cell, next: Cell) => {
   const x = current.i - next.i;
 
   if (x === 1) {
-    current.walls[3] = false; // REMOVE LEFT
-    next.walls[1] = false; // REMOVE RIGHT
+    current.walls.left = false;
+    next.walls.right = false;
   } else if (x === -1) {
-    current.walls[1] = false; // REMOVE LEFT
-    next.walls[3] = false; // REMOVE RIGHT
+    current.walls.right = false;
+    next.walls.left = false;
   }
 
   const y = current.j - next.j;
 
   if (y === 1) {
-    current.walls[0] = false; // REMOVE LEFT
-    next.walls[2] = false; // REMOVE RIGHT
+    current.walls.top = false;
+    next.walls.bottom = false;
   } else if (y === -1) {
-    current.walls[2] = false; // REMOVE LEFt
-    next.walls[0] = false; // REMOVE RIGHT
+    current.walls.bottom = false;
+    next.walls.top = false;
   }
 };
 

@@ -1,10 +1,22 @@
 import p5 from "p5";
 import { cellSize, cols, rows, grid } from "../index";
 
+type Wall = {
+  top: boolean;
+  right: boolean;
+  bottom: boolean;
+  left: boolean;
+};
+
 export default class Cell {
   public i: number;
   public j: number;
-  public walls: Boolean[] = [true, true, true, true];
+  public walls: Wall = {
+    top: true,
+    right: true,
+    bottom: true,
+    left: true,
+  };
   public visited = false;
   public end = false;
 
@@ -29,10 +41,10 @@ export default class Cell {
 
     s.strokeWeight(2);
     s.stroke(255);
-    this.walls[0] && s.line(x, y, x + w, y); // TOP
-    this.walls[1] && s.line(x + w, y, x + w, y + w); // RIGHT
-    this.walls[2] && s.line(x + w, y + w, x, y + w); // BOTTOM
-    this.walls[3] && s.line(x, y + w, x, y); // LEFT
+    this.walls.top && s.line(x, y, x + w, y);
+    this.walls.right && s.line(x + w, y, x + w, y + w);
+    this.walls.bottom && s.line(x + w, y + w, x, y + w);
+    this.walls.left && s.line(x, y + w, x, y);
 
     // Define end cell
     if (this.i === rows - 1 && this.j === cols - 1) {

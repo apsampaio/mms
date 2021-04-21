@@ -6,6 +6,7 @@ export default class Cell {
   public j: number;
   public walls: Boolean[] = [true, true, true, true];
   public visited = false;
+  public end = false;
 
   constructor(i: number, j: number) {
     this.i = i;
@@ -32,9 +33,14 @@ export default class Cell {
     this.walls[2] && s.line(x + w, y + w, x, y + w); // BOTTOM
     this.walls[3] && s.line(x, y + w, x, y); // LEFT
 
+    // Define end cell
+    if (this.i === rows - 1 && this.j === cols - 1) {
+      this.end = true;
+    }
+
     if (this.visited) {
       s.noStroke();
-      s.fill(255, 0, 255, 100);
+      this.end ? s.fill(0, 255, 0) : s.fill(255, 0, 255, 100);
       s.rect(x, y, cellSize, cellSize);
     }
   };

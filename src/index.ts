@@ -2,12 +2,12 @@ import p5 from "p5";
 import Cell from "./models/Cell";
 import removeWalls from "./utils/removeWalls";
 
-export const cellSize = 40;
+export const cellSize = 10;
 export const canvasSize = 400;
 export const cols = Math.floor(canvasSize / cellSize);
 export const rows = Math.floor(canvasSize / cellSize);
 export const grid: Cell[] = [];
-export const stack: Cell[] = [];
+const stack: Cell[] = [];
 
 let currentCell: Cell;
 
@@ -32,7 +32,9 @@ const sketch = (s: p5) => {
 
     currentCell.visited = true;
     currentCell.highlight(s);
+
     const next = currentCell.checkNeighbors();
+
     if (next) {
       next.visited = true;
       stack.push(currentCell);

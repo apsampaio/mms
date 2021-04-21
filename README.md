@@ -12,7 +12,9 @@
 
 ## 🧱 Maze Generator using Recursive backtracker algorithm
 
-<img src="./.github/maze.gif" />
+<h4 align="center">
+  <img width="50%" src="./.github/maze.gif" />
+</h4>
 
 ### 📚 References
 

@@ -1,5 +1,6 @@
-import Cell from "./models/Cell";
 import p5 from "p5";
+import Cell from "./models/Cell";
+import removeWalls from "./utils/removeWalls";
 
 export const cellSize = 40;
 export const canvasSize = 400;
@@ -31,9 +32,11 @@ const sketch = (s: p5) => {
     const next = currentCell.checkNeighbors();
     if (next) {
       next.visited = true;
+      removeWalls(currentCell, next);
       currentCell = next;
     }
   };
 };
 
+// P5 Definition
 const sketchInstance = new p5(sketch);

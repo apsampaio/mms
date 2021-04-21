@@ -2,9 +2,9 @@ import p5 from "p5";
 import { cellSize, cols, rows, grid } from "../index";
 
 export default class Cell {
-  private i: number;
-  private j: number;
-  private walls: Boolean[] = [];
+  public i: number;
+  public j: number;
+  public walls: Boolean[] = [];
   public visited = false;
 
   constructor(i: number, j: number) {
@@ -34,7 +34,8 @@ export default class Cell {
     this.walls[3] && s.line(x, y + w, x, y); // LEFT
 
     if (this.visited) {
-      s.fill("red");
+      s.noStroke();
+      s.fill(255, 0, 255, 100);
       s.rect(x, y, cellSize, cellSize);
     }
   };

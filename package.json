@@ -5,8 +5,8 @@
   "author": "apsampaio <andre03.sampaio@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel src/index.html",
-    "dev": "concurrently \"yarn start\" \"wait-on http://localhost:1234 && electron .\""
+    "dev": "parcel src/index.html",
+    "start": "concurrently \"yarn dev\" \"wait-on http://localhost:1234 && electron .\""
   },
   "devDependencies": {
     "@types/p5": "^0.9.1",

@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require("electron");
 
 function createWindow() {
   const win = new BrowserWindow({
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     title: "Micromouse Simulator",
     width: 600,
     height: 400,

@@ -4,9 +4,11 @@ import removeWalls from "./utils/removeWalls";
 
 export const cellSize = 40;
 export const canvasSize = 400;
-export const cols = Math.floor(canvasSize / 40);
-export const rows = Math.floor(canvasSize / 40);
+export const cols = Math.floor(canvasSize / cellSize);
+export const rows = Math.floor(canvasSize / cellSize);
 export const grid: Cell[] = [];
+export const stack: Cell[] = [];
+
 let currentCell: Cell;
 
 const sketch = (s: p5) => {
@@ -18,7 +20,7 @@ const sketch = (s: p5) => {
         grid.push(cell);
       }
     }
-    s.frameRate(5);
+    //s.frameRate(5);
     currentCell = grid[0];
   };
 
@@ -29,11 +31,15 @@ const sketch = (s: p5) => {
     }
 
     currentCell.visited = true;
+    currentCell.highlight(s);
     const next = currentCell.checkNeighbors();
     if (next) {
       next.visited = true;
+      stack.push(currentCell);
       removeWalls(currentCell, next);
       currentCell = next;
+    } else if (stack.length) {
+      currentCell = stack.pop()!;
     }
   };
 };

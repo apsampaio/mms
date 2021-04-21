@@ -4,7 +4,7 @@ import { cellSize, cols, rows, grid } from "../index";
 export default class Cell {
   public i: number;
   public j: number;
-  public walls: Boolean[] = [];
+  public walls: Boolean[] = [true, true, true, true];
   public visited = false;
 
   constructor(i: number, j: number) {
@@ -25,7 +25,6 @@ export default class Cell {
     const w = cellSize;
     const x = this.i * w;
     const y = this.j * w;
-    this.walls = [true, true, false, false];
 
     s.stroke(255);
     this.walls[0] && s.line(x, y, x + w, y); // TOP
@@ -58,5 +57,14 @@ export default class Cell {
     } else {
       return undefined;
     }
+  };
+
+  public highlight = (s: p5) => {
+    const x = this.i * cellSize;
+    const y = this.j * cellSize;
+
+    s.noStroke();
+    s.fill(0, 0, 255, 100);
+    s.rect(x, y, cellSize, cellSize);
   };
 }

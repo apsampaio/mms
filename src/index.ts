@@ -32,7 +32,11 @@ const sketch = (s: p5) => {
   s.draw = () => {
     drawMaze(s);
     if (mazeFinished) {
+      s.frameRate(1);
       player.show(s);
+      const moves = ["a", "s", "d", "w"];
+      const random = Math.floor(Math.random() * moves.length);
+      checkPlayerMove(moves[random], player);
     }
   };
 

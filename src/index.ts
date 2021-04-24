@@ -1,9 +1,11 @@
 import p5 from "p5";
 import Cell from "./models/Cell";
 import Player from "./models/Player";
+
+import LeftHand from "./algorithms/LeftHand";
+import iAlgorithm from "./algorithms/iAlgorithm";
+
 import drawMaze, { mazeFinished } from "./utils/drawMaze";
-import checkPlayerMove from "./utils/checkPlayerMove";
-import incrementCounter from "./utils/incrementCounter";
 
 export const cellSize = 40;
 export const canvasSize = 400;
@@ -13,8 +15,9 @@ export const rows = Math.floor(canvasSize / cellSize);
 
 export const grid: Cell[] = [];
 
-let player: Player;
+let algorithm: iAlgorithm;
 let counter = 0;
+let player: Player;
 
 const sketch = (s: p5) => {
   s.setup = () => {
@@ -31,23 +34,16 @@ const sketch = (s: p5) => {
 
   s.draw = () => {
     drawMaze(s);
+    player.show(s);
     if (mazeFinished) {
-      s.frameRate(1);
-      player.show(s);
-      const moves = ["a", "s", "d", "w"];
-      const random = Math.floor(Math.random() * moves.length);
-      checkPlayerMove(moves[random], player);
+      // algorithm.run();
     }
   };
 
-  s.keyPressed = () => {
-    // WAIT MAZE FINISH TO PLAY THE GAME
-    if (!mazeFinished) return;
-
-    if (checkPlayerMove(s.key, player)) {
-      counter = incrementCounter(counter);
-    }
-  };
+  // s.keyPressed = () => {
+  //   // WAIT MAZE FINISH TO PLAY THE GAME
+  //   if (!mazeFinished) return;
+  // };
 };
 
 // P5 Definition

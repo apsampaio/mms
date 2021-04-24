@@ -53,11 +53,13 @@ export default class Cell {
 
     if (this.visited) {
       s.noStroke();
-      s.fill(255, 0, 255, 100);
+      s.fill(68, 71, 90, 100);
+
       s.rect(x, y, cellSize, cellSize);
       if (this.end) {
         // DRAW GREEN RECT
-        s.fill(0, 255, 0);
+        s.stroke(80, 250, 123);
+        s.fill(80, 250, 123, 100);
         s.rect(x + 2, y + 2, cellSize - 4, cellSize - 4);
       }
     }
@@ -87,8 +89,8 @@ export default class Cell {
     const x = this.i * cellSize;
     const y = this.j * cellSize;
 
-    s.noStroke();
-    s.fill(0, 0, 255, 100);
+    s.stroke(241, 250, 140);
+    s.fill(241, 250, 140, 100);
     s.rect(x, y, cellSize, cellSize);
   };
 }

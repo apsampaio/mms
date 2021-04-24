@@ -12,11 +12,19 @@ export default class Player {
 
   public show = (s: p5) => {
     const w = cellSize;
+    const offset = 8;
     const x = this.i * w;
     const y = this.j * w;
 
-    s.noStroke();
-    s.fill("red");
-    s.rect(x + 2, y + 2, w - 4, w - 4);
+    const x1 = x + offset;
+    const y1 = y + w - offset;
+    const x2 = x + w - offset;
+    const y2 = y1;
+    const x3 = x + w / 2;
+    const y3 = y + offset;
+
+    s.stroke(255, 85, 85);
+    s.fill(255, 85, 85, 100);
+    s.triangle(x1, y1, x2, y2, x3, y3);
   };
 }

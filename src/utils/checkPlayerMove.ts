@@ -30,6 +30,11 @@ const checkPlayerMove = (key: string, player: Player): Boolean => {
   console.log(key + " PRESSED");
   const direction = keyDirections[key];
   const matchingCell = getPlayerMatchingCell(player, grid);
+
+  if (direction.direction !== player.direction) {
+    player.direction = direction.direction;
+  }
+
   if (!direction || !matchingCell || matchingCell.walls[direction.direction])
     return false;
 

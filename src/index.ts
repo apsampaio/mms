@@ -6,6 +6,7 @@ import LeftHand from "./algorithm/LeftHand";
 import iAlgorithm from "./algorithm/iAlgorithm";
 
 import drawMaze, { mazeFinished } from "./utils/drawMaze";
+import checkPlayerMove from "./utils/checkPlayerMove";
 
 export const cellSize = 40;
 export const canvasSize = 400;
@@ -43,10 +44,13 @@ const sketch = (s: p5) => {
     }
   };
 
-  // s.keyPressed = () => {
-  //   // WAIT MAZE FINISH TO PLAY THE GAME
-  //   if (!mazeFinished) return;
-  // };
+  s.keyPressed = () => {
+    // WAIT MAZE FINISH TO PLAY THE GAME
+    if (!mazeFinished) {
+      return;
+    }
+    checkPlayerMove(s.key, player);
+  };
 };
 
 // P5 Definition

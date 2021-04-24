@@ -91,6 +91,6 @@ export default class Cell {
 
     s.stroke(241, 250, 140);
     s.fill(241, 250, 140, 100);
-    s.rect(x, y, cellSize, cellSize);
+    s.rect(x + 2, y + 2, cellSize - 4, cellSize - 4);
   };
 }

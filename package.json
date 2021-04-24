@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel src/index.html",
-    "start": "concurrently \"yarn dev\" \"wait-on http://localhost:1234 && electron .\""
+    "start": "concurrently \"yarn dev\" \"wait-on http://localhost:1234 && electron .\"",
+    "electron": "electron ."
   },
   "devDependencies": {
     "@types/p5": "^0.9.1",

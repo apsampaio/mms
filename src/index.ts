@@ -2,8 +2,8 @@ import p5 from "p5";
 import Cell from "./models/Cell";
 import Player from "./models/Player";
 
-import LeftHand from "./algorithms/LeftHand";
-import iAlgorithm from "./algorithms/iAlgorithm";
+import LeftHand from "./algorithm/LeftHand";
+import iAlgorithm from "./algorithm/iAlgorithm";
 
 import drawMaze, { mazeFinished } from "./utils/drawMaze";
 
@@ -22,6 +22,9 @@ let player: Player;
 const sketch = (s: p5) => {
   s.setup = () => {
     s.createCanvas(canvasSize, canvasSize);
+    s.angleMode(s.DEGREES);
+    s.smooth();
+
     for (let j = 0; j < rows; j++) {
       for (let i = 0; i < cols; i++) {
         const cell = new Cell(i, j);

@@ -19,6 +19,7 @@ export default class Cell {
   };
   public visited = false;
   public end = false;
+  public visitedByPlayerCount = 0;
 
   constructor(i: number, j: number) {
     this.i = i;
@@ -63,6 +64,10 @@ export default class Cell {
         s.rect(x + 2, y + 2, cellSize - 4, cellSize - 4);
       }
     }
+
+    if (this.visitedByPlayerCount) {
+      this.drawVisitedByPlayer(s);
+    }
   };
 
   public checkNeighbors = () => {
@@ -92,5 +97,45 @@ export default class Cell {
     s.stroke(241, 250, 140);
     s.fill(241, 250, 140, 100);
     s.rect(x + 2, y + 2, cellSize - 4, cellSize - 4);
+  };
+
+  private drawVisitedByPlayer = (s: p5) => {
+    const offset = 14;
+    const radius = cellSize / 2 - offset;
+
+    switch (this.visitedByPlayerCount) {
+      case 1: {
+        s.stroke(241, 250, 140);
+        s.fill(241, 250, 140, 100);
+        break;
+      }
+
+      case 2: {
+        s.stroke(255, 184, 108);
+        s.fill(255, 184, 108, 100);
+        break;
+      }
+      case 3: {
+        s.stroke(255, 121, 198);
+        s.fill(255, 121, 198, 100);
+        break;
+      }
+      case 4: {
+        s.stroke(189, 147, 249);
+        s.fill(189, 147, 249, 100);
+        break;
+      }
+      default: {
+        s.stroke(255, 85, 85);
+        s.fill(255, 85, 85, 100);
+        break;
+      }
+    }
+
+    s.circle(
+      this.i * cellSize + cellSize / 2,
+      this.j * cellSize + cellSize / 2,
+      radius
+    );
   };
 }

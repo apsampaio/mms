@@ -40,6 +40,8 @@ const checkPlayerMove = (key: string, player: Player): Boolean => {
 
   player.i += direction.i;
   player.j += direction.j;
+
+  matchingCell.visitedByPlayerCount++;
   return true;
 };
 

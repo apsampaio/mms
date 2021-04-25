@@ -9,7 +9,7 @@ import drawMaze, { mazeFinished } from "./utils/drawMaze";
 import checkPlayerMove from "./utils/checkPlayerMove";
 
 export const cellSize = 40;
-export const canvasSize = 400;
+export const canvasSize = 800;
 
 export const cols = Math.floor(canvasSize / cellSize);
 export const rows = Math.floor(canvasSize / cellSize);
